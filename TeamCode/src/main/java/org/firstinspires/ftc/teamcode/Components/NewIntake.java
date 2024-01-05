@@ -112,7 +112,7 @@ public class NewIntake implements Component {
     }
 
     public void updatePower(){
-        //set roller power to some value (negative or positive) dependant on whether isForward is true
+        //update roller to be negative or positive depending on whether isForward is true
     }
 
     public void setAutoPos(){
