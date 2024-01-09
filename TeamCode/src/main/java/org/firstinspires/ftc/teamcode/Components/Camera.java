@@ -36,7 +36,7 @@ public class Camera implements Component {
                 .setDrawCubeProjection(true)
                 .setDrawTagID(true)
                 .setDrawTagOutline(true)
-                .setLensIntrinsics(1426.78, 1426.78 , 587.107, 272.84)
+                .setLensIntrinsics(1430.614, 1430.614 , 639.518, 377.834)
                 .build();
 
 
