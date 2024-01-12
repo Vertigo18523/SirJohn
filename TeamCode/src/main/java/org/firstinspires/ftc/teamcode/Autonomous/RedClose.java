@@ -194,7 +194,7 @@ public class RedClose extends BaseOpMode {
                                 .splineToConstantHeading(new Vector2d(detection.ftcPose.y-3, -detection.ftcPose.x-6), 0,  RRMecanum.getVelocityConstraint(15, DriveConstants.MAX_ANG_VEL, DriveConstants.TRACK_WIDTH),
                                         RRMecanum.getAccelerationConstraint(DriveConstants.MAX_ACCEL))
                                 .addDisplacementMarker(16, () -> {
-                                    robot.slides.move(600,1);
+                                    robot.slides.move(500,1);
                                     robot.outtake.unFlip();
                                 })
                                 .splineToConstantHeading(new Vector2d(detection.ftcPose.y-4.5, -detection.ftcPose.x-7),0, RRMecanum.getVelocityConstraint(5, DriveConstants.MAX_ANG_VEL, DriveConstants.TRACK_WIDTH),
@@ -218,7 +218,7 @@ public class RedClose extends BaseOpMode {
                                 .splineToConstantHeading(new Vector2d(detection.ftcPose.y-3.5, -detection.ftcPose.x-6),0, RRMecanum.getVelocityConstraint(15, DriveConstants.MAX_ANG_VEL, DriveConstants.TRACK_WIDTH),
                                         RRMecanum.getAccelerationConstraint(DriveConstants.MAX_ACCEL))
                                 .addDisplacementMarker(16, () -> {
-                                    robot.slides.move(600,1);
+                                    robot.slides.move(500,1);
                                     robot.outtake.unFlip();
                                 })
                                 .splineToConstantHeading(new Vector2d(detection.ftcPose.y-5.5, -detection.ftcPose.x-7),0, RRMecanum.getVelocityConstraint(5, DriveConstants.MAX_ANG_VEL, DriveConstants.TRACK_WIDTH),
@@ -243,7 +243,7 @@ public class RedClose extends BaseOpMode {
                                 .splineToConstantHeading(new Vector2d(detection.ftcPose.y-3.8, -detection.ftcPose.x-6.5), 0, RRMecanum.getVelocityConstraint(15, DriveConstants.MAX_ANG_VEL, DriveConstants.TRACK_WIDTH),
                                         RRMecanum.getAccelerationConstraint(DriveConstants.MAX_ACCEL))
                                 .addDisplacementMarker(16, () -> {
-                                    robot.slides.move(600,1);
+                                    robot.slides.move(500,1);
                                     robot.outtake.unFlip();
                                 })
                                 .splineToConstantHeading(new Vector2d(detection.ftcPose.y-5.8 , -detection.ftcPose.x-7),0, RRMecanum.getVelocityConstraint(5, DriveConstants.MAX_ANG_VEL, DriveConstants.TRACK_WIDTH),
