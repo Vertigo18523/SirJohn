@@ -57,9 +57,7 @@ public class MainOp extends BaseOpMode {
         };
 
         gamepadListener2.b.onRelease = () -> {
-            //figure out what to do in the cases of 0 or 1 pixel already on outtake
-            //bc that will determine whether pins should open or not before flipping.
-            if(robot.intake.getCurrentPosition() == Intake.backward && robot.intake.claw.getPosition() == robot.intake.midClawPos){
+            if(robot.intake.arm.getTargetPosition() == Intake.backward){
                 robot.intake.openClaw();
             }
             robot.intake.toggleArm();
