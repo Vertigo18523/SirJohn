@@ -46,12 +46,12 @@ public class RedClosePark extends BaseOpMode {
     }
     @Override
     public void onStart() throws InterruptedException {
-        drive.followTrajectory(offWall);
-        drive.waitForIdle();
-        drive.setPoseEstimate(new Pose2d());
+//        drive.followTrajectory(offWall);
+//        drive.waitForIdle();
+//        drive.setPoseEstimate(new Pose2d());
         drive.followTrajectoryAsync(toPark);
         drive.waitForIdle();
-        drive.setPoseEstimate(new Pose2d());
+//        drive.setPoseEstimate(new Pose2d());
         robot.outtake.unFlip();
     }
     @Override
