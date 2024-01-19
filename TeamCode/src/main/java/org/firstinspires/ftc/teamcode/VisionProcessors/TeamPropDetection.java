@@ -4,12 +4,9 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 
-import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
-
 import org.firstinspires.ftc.robotcore.external.Telemetry;
 import org.firstinspires.ftc.robotcore.internal.camera.calibration.CameraCalibration;
 import org.firstinspires.ftc.teamcode.Base.BaseOpMode;
-import org.firstinspires.ftc.teamcode.Components.Camera;
 import org.firstinspires.ftc.vision.VisionProcessor;
 import org.opencv.core.Core;
 import org.opencv.core.Mat;
@@ -50,9 +47,9 @@ public class TeamPropDetection implements VisionProcessor {
             lowerBlueBounds = new Scalar(50, 50, 100, 255),
             upperBlueBounds = new Scalar(100, 100, 255, 255);
 
-    private volatile ParkingPosition position = ParkingPosition.RIGHT;
+    private volatile PropPosition position = PropPosition.RIGHT;
 
-    public enum ParkingPosition {
+    public enum PropPosition {
         LEFT,
         CENTER,
         RIGHT
@@ -81,7 +78,7 @@ public class TeamPropDetection implements VisionProcessor {
         return null;
 
     }
-    public ParkingPosition getPosition(){
+    public PropPosition getPosition(){
         return position;
     }
     public String getTelemetry() {
@@ -173,22 +170,22 @@ public class TeamPropDetection implements VisionProcessor {
             if (isBlue) {
                 double maxBluePercent = Math.max(centerBluePercent, Math.max(leftBluePercent, rightBluePercent));
                 if (maxBluePercent == centerBluePercent) {
-                    position = ParkingPosition.CENTER;
+                    position = PropPosition.CENTER;
                 } else if (maxBluePercent == leftBluePercent) {
-                    position = ParkingPosition.LEFT;
+                    position = PropPosition.LEFT;
                 } else if (maxBluePercent == rightBluePercent) {
-                    position = ParkingPosition.RIGHT;
+                    position = PropPosition.RIGHT;
                 } else {
                     telemetry.addLine("does not see anything, but knows it is blue");
                 }
             } else {
                 double maxRedPercent = Math.max(centerRedPercent, Math.max(leftRedPercent, rightRedPercent));
                 if (maxRedPercent == centerRedPercent) {
-                    position = ParkingPosition.CENTER;
+                    position = PropPosition.CENTER;
                 } else if (maxRedPercent == leftRedPercent) {
-                    position = ParkingPosition.LEFT;
+                    position = PropPosition.LEFT;
                 } else if (maxRedPercent == rightRedPercent) {
-                    position = ParkingPosition.RIGHT;
+                    position = PropPosition.RIGHT;
                 } else {
                     telemetry.addLine("does not see anything, but knows it is red");
                 }

@@ -23,7 +23,7 @@ import java.util.List;
 public class TestAuto extends BaseOpMode {
     public SirJohn robot;
     public RRMecanum drive;
-    public TeamPropDetection.ParkingPosition position = TeamPropDetection.ParkingPosition.CENTER;
+    public TeamPropDetection.PropPosition position = TeamPropDetection.PropPosition.CENTER;
     public boolean place1 = false;
 
     public Trajectory tester;
@@ -63,7 +63,7 @@ public class TestAuto extends BaseOpMode {
     }
     @Override
     public void onStart() throws InterruptedException{
-        position = TeamPropDetection.ParkingPosition.CENTER;
+        position = TeamPropDetection.PropPosition.CENTER;
         robot.outtake.toMiddle();
         drive.waitForIdle();
         drive.followTrajectoryAsync(tester);
@@ -84,7 +84,7 @@ public class TestAuto extends BaseOpMode {
             for (AprilTagDetection detection : currentDetections) {
                 if (detection.metadata != null) {
 
-                    if (detection.id == 4 && position == TeamPropDetection.ParkingPosition.LEFT) {
+                    if (detection.id == 4 && position == TeamPropDetection.PropPosition.LEFT) {
                         drive.setPoseEstimate(new Pose2d());
                         updateTester = drive.trajectoryBuilder(new Pose2d())
                                 .lineTo(new Vector2d(0,-6), RRMecanum.getVelocityConstraint(15, DriveConstants.MAX_ANG_VEL, DriveConstants.TRACK_WIDTH),
@@ -92,7 +92,7 @@ public class TestAuto extends BaseOpMode {
                                 .build();
 
                     }
-                    else if (detection.id == 5 && position == TeamPropDetection.ParkingPosition.CENTER) {
+                    else if (detection.id == 5 && position == TeamPropDetection.PropPosition.CENTER) {
                         drive.setPoseEstimate(new Pose2d());
                         updateTester = drive.trajectoryBuilder(new Pose2d())
                                 .lineTo(new Vector2d(detection.ftcPose.y-2,0), RRMecanum.getVelocityConstraint(15, DriveConstants.MAX_ANG_VEL, DriveConstants.TRACK_WIDTH),
@@ -100,7 +100,7 @@ public class TestAuto extends BaseOpMode {
                                 .build();
 
                     }
-                    else if (detection.id == 6 && position == TeamPropDetection.ParkingPosition.RIGHT) {
+                    else if (detection.id == 6 && position == TeamPropDetection.PropPosition.RIGHT) {
                         drive.setPoseEstimate(new Pose2d());
                         updateTester = drive.trajectoryBuilder(new Pose2d())
                                 .lineTo(new Vector2d(10,-6), RRMecanum.getVelocityConstraint(15, DriveConstants.MAX_ANG_VEL, DriveConstants.TRACK_WIDTH),

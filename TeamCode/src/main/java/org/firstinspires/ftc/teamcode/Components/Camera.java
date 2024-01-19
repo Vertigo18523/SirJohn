@@ -82,7 +82,7 @@ public class Camera implements Component {
         return visionProcessor.getIsBlue();
     }
 
-    public TeamPropDetection.ParkingPosition getPosition() {
+    public TeamPropDetection.PropPosition getPosition() {
         return visionProcessor.getPosition();
     }
 
