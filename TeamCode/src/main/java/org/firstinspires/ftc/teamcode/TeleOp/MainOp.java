@@ -4,12 +4,15 @@ import com.acmerobotics.dashboard.FtcDashboard;
 import com.acmerobotics.dashboard.telemetry.MultipleTelemetry;
 import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
+import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.hardware.HardwareMap;
 
 import org.firstinspires.ftc.teamcode.Base.BaseOpMode;
 import org.firstinspires.ftc.teamcode.Base.Robot;
 import org.firstinspires.ftc.teamcode.Bots.SirJohn;
 import org.firstinspires.ftc.teamcode.Components.Intake;
 import org.firstinspires.ftc.teamcode.Components.Outtake;
+import org.firstinspires.ftc.teamcode.RoadRunner.drive.RRMecanum;
 
 @TeleOp
 @Disabled
@@ -17,6 +20,9 @@ public class MainOp extends BaseOpMode {
     public SirJohn robot;
     public double x, y, rot, speed;
     public boolean slowmode;
+    RRMecanum drive;
+
+
 
     @Override
     protected Robot setRobot() {
@@ -33,6 +39,8 @@ public class MainOp extends BaseOpMode {
     public void onInit() throws InterruptedException {
         telemetry = new MultipleTelemetry(telemetry, FtcDashboard.getInstance().getTelemetry());
         FtcDashboard.getInstance().startCameraStream(robot.camera.streamSource, 0);
+        drive = new RRMecanum(hardwareMap);
+        drive.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
     }
 
     @Override
@@ -75,6 +83,7 @@ public class MainOp extends BaseOpMode {
 
     @Override
     public void onUpdate() throws InterruptedException {
+        drive.update();
         speed = (gamepad1.left_bumper ? 0.25 : (gamepad1.right_bumper || slowmode ? 0.5 : 1)) * (gamepad1.left_stick_button ? 1 : 0.75);
         x = gamepad1.left_stick_x;
         y = -gamepad1.left_stick_y;

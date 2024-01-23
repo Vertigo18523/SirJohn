@@ -183,6 +183,7 @@ public class RedClose extends BaseOpMode {
     public void onUpdate(){
         drive.update();
         robot.camera.update();
+
         List<AprilTagDetection> currentDetections = robot.camera.aprilTag.getDetections();
         if(place1) {
             for (AprilTagDetection detection : currentDetections) {
@@ -228,17 +229,15 @@ public class RedClose extends BaseOpMode {
                                         RRMecanum.getAccelerationConstraint(DriveConstants.MAX_ACCEL))
                                 .addDisplacementMarker( () -> {
                                     drive.turn(Math.toRadians(-100));
-                                })
-
-
-                                .forward(10, RRMecanum.getVelocityConstraint(5, DriveConstants.MAX_ANG_VEL, DriveConstants.TRACK_WIDTH),
-                                        RRMecanum.getAccelerationConstraint(DriveConstants.MAX_ACCEL))
-                                .addDisplacementMarker( () -> {
                                     robot.slides.waitForIdle();
                                     robot.slides.move(20,1);
                                     robot.outtake.flip();
                                     robot.intake.setAutoPos();
                                 })
+
+
+                                .forward(10, RRMecanum.getVelocityConstraint(5, DriveConstants.MAX_ANG_VEL, DriveConstants.TRACK_WIDTH),
+                                        RRMecanum.getAccelerationConstraint(DriveConstants.MAX_ACCEL))
 
                                 .build();
                         drive.turn(Math.toRadians(-detection.ftcPose.roll));
