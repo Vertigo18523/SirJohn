@@ -3,6 +3,7 @@ package org.firstinspires.ftc.teamcode.Bots;
 import com.qualcomm.hardware.rev.RevHubOrientationOnRobot;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
+import com.qualcomm.robotcore.hardware.DistanceSensor;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.IMU;
 
@@ -28,12 +29,14 @@ public class SirJohn extends Robot {
     public Hanger hanger;
     public Slides slides;
     public IMU imu;
+    public DistanceSensor grabberSense;
 
     @Override
     protected void mapHardware(HardwareMap hardwareMap, Telemetry telemetry, BaseOpMode opMode, boolean isTeleOp) {
         this.isTeleOp = isTeleOp;
-        this.intake = new Intake("arm", "claw", hardwareMap, telemetry, isTeleOp, 3, 0,160,0.95,0.67,-60, 0.85);
-        this.outtake = new Outtake("spin", hardwareMap, telemetry, 0.032, 0.84,0.08, 0.675);
+        this.grabberSense = hardwareMap.get(DistanceSensor.class, "grabberSense");
+        this.intake = new Intake("arm", "claw", hardwareMap, telemetry, isTeleOp, 3, 0,160,0.5,0.1,-60, 0.25);
+        this.outtake = new Outtake("spin", hardwareMap, telemetry, 0.033, 0.84,0.08, 0.675);
         this.hanger = new Hanger("hanger", hardwareMap, telemetry, isTeleOp, 0,0,0);
         this.crossbow = new Crossbow("crossbow", hardwareMap, telemetry, 0.7, 1);
         this.slides = new Slides("rightArm","leftArm" , hardwareMap, telemetry, isTeleOp, 0, 2240, 0,90,800, 0.2);

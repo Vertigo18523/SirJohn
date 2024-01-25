@@ -30,7 +30,8 @@ public class Intake implements Component {
     public boolean isClosed = false;
     public boolean isTeleOp, forcePosition;
     public double error, prevError = 0, time, prevTime = System.nanoTime() * 1e-9d, power;
-    public static double kP = 0.004, kD = 0.00001, kG = 0.04;
+    public static double kP = 0.004, kD = 0.00001, kG = 0.02;
+    public boolean manualOverrideIsOn = true;
     public Intake(
             String armName,
             String clawName,

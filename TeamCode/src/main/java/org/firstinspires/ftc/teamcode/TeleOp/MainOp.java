@@ -7,6 +7,7 @@ import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 
+import org.firstinspires.ftc.robotcore.external.navigation.DistanceUnit;
 import org.firstinspires.ftc.teamcode.Base.BaseOpMode;
 import org.firstinspires.ftc.teamcode.Base.Robot;
 import org.firstinspires.ftc.teamcode.Bots.SirJohn;
@@ -65,12 +66,15 @@ public class MainOp extends BaseOpMode {
         };
 
         gamepadListener2.b.onRelease = () -> {
-            if(robot.intake.arm.getTargetPosition() == Intake.backward){
+            if (robot.intake.arm.getTargetPosition() == Intake.backward){
                 robot.intake.openClaw();
             }
             robot.intake.toggleArm();
 
 
+        };
+        gamepadListener2.y.onRelease = () -> {
+          robot.intake.manualOverrideIsOn = !robot.intake.manualOverrideIsOn;
         };
 
 
@@ -129,7 +133,9 @@ public class MainOp extends BaseOpMode {
         }
         robot.hanger.setPower(gamepad2.right_stick_y);
 
-
+        if (robot.grabberSense.getDistance(DistanceUnit.CM) < 2.5 && !robot.intake.isClosed && robot.intake.arm.getTargetPosition() != Intake.backward && !robot.intake.manualOverrideIsOn) {
+            robot.intake.closeClaw();
+        }
 
         telemetry.update();
     }
