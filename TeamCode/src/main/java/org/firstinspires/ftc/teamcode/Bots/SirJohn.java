@@ -35,8 +35,8 @@ public class SirJohn extends Robot {
     protected void mapHardware(HardwareMap hardwareMap, Telemetry telemetry, BaseOpMode opMode, boolean isTeleOp) {
         this.isTeleOp = isTeleOp;
         this.grabberSense = hardwareMap.get(DistanceSensor.class, "grabberSense");
-        this.intake = new Intake("arm", "claw", hardwareMap, telemetry, isTeleOp, 3, 0,160,0.5,0.1,-60, 0.25);
-        this.outtake = new Outtake("spin", hardwareMap, telemetry, 0.033, 0.84,0.08, 0.675);
+        this.intake = new Intake("arm", "claw", hardwareMap, telemetry, isTeleOp, 3, 1,160,0.7,0.1,-60, 0.25);
+        this.outtake = new Outtake("spin", hardwareMap, telemetry, 0.035, 0.84,0.08, 0.675);
         this.hanger = new Hanger("hanger", hardwareMap, telemetry, isTeleOp, 0,0,0);
         this.crossbow = new Crossbow("crossbow", hardwareMap, telemetry, 0.7, 1);
         this.slides = new Slides("rightArm","leftArm" , hardwareMap, telemetry, isTeleOp, 0, 2240, 0,90,800, 0.2);
