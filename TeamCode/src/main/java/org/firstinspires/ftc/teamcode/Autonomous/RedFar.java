@@ -241,7 +241,7 @@ public class RedFar extends BaseOpMode {
                                 .splineToConstantHeading(new Vector2d(detection.ftcPose.y-2.5, -detection.ftcPose.x), 0,  RRMecanum.getVelocityConstraint(15, DriveConstants.MAX_ANG_VEL, DriveConstants.TRACK_WIDTH),
                                         RRMecanum.getAccelerationConstraint(DriveConstants.MAX_ACCEL))
                                 .addDisplacementMarker(15, () -> {
-                                    robot.slides.move(540,1);
+                                    robot.slides.move(760,1);
                                     robot.intake.claw.close();
                                     robot.outtake.unFlip();
                                 })
@@ -268,7 +268,7 @@ public class RedFar extends BaseOpMode {
                                 .splineToConstantHeading(new Vector2d(detection.ftcPose.y-3.3, -detection.ftcPose.x),0, RRMecanum.getVelocityConstraint(15, DriveConstants.MAX_ANG_VEL, DriveConstants.TRACK_WIDTH),
                                         RRMecanum.getAccelerationConstraint(DriveConstants.MAX_ACCEL))
                                 .addDisplacementMarker(15, () -> {
-                                    robot.slides.move(540,1);
+                                    robot.slides.move(760,1);
                                     robot.intake.claw.close();
                                     robot.outtake.unFlip();
                                 })
@@ -293,7 +293,7 @@ public class RedFar extends BaseOpMode {
                                 .splineToConstantHeading(new Vector2d(detection.ftcPose.y-3, -detection.ftcPose.x-3), 0, RRMecanum.getVelocityConstraint(15, DriveConstants.MAX_ANG_VEL, DriveConstants.TRACK_WIDTH),
                                         RRMecanum.getAccelerationConstraint(DriveConstants.MAX_ACCEL))
                                 .addDisplacementMarker(18, () -> {
-                                    robot.slides.move(540,1);
+                                    robot.slides.move(760,1);
                                     robot.intake.claw.close();
                                     robot.outtake.unFlip();
                                 })
