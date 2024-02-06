@@ -5,15 +5,17 @@ import com.acmerobotics.dashboard.telemetry.MultipleTelemetry;
 import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
-import com.qualcomm.robotcore.hardware.HardwareMap;
 
 import org.firstinspires.ftc.robotcore.external.navigation.DistanceUnit;
 import org.firstinspires.ftc.teamcode.Base.BaseOpMode;
 import org.firstinspires.ftc.teamcode.Base.Robot;
 import org.firstinspires.ftc.teamcode.Bots.SirJohn;
 import org.firstinspires.ftc.teamcode.Components.Intake;
-import org.firstinspires.ftc.teamcode.Components.Outtake;
 import org.firstinspires.ftc.teamcode.RoadRunner.drive.RRMecanum;
+
+import com.acmerobotics.roadrunner.trajectory.Trajectory;
+import com.acmerobotics.roadrunner.geometry.Pose2d;
+import com.acmerobotics.roadrunner.geometry.Vector2d;
 
 @TeleOp
 @Disabled
@@ -83,6 +85,14 @@ public class MainOp extends BaseOpMode {
         };
         robot.intake.openClaw();
 
+        gamepadListener1.a.onRelease = () -> {
+            drive.followTrajectoryAsync(
+                drive.trajectoryBuilder(new Pose2d())
+                    .back(0.1)
+                    .build()
+            );
+        };
+
     }
 
     @Override
@@ -133,7 +143,7 @@ public class MainOp extends BaseOpMode {
         }
         robot.hanger.setPower(gamepad2.right_stick_y);
 
-        if (robot.grabberSense.getDistance(DistanceUnit.CM) < 2.5 && !robot.intake.isClosed && robot.intake.arm.getTargetPosition() != Intake.backward && !robot.intake.manualOverrideIsOn) {
+        if (robot.grabberSense.getDistance(DistanceUnit.CM) < 2 && !robot.intake.isClosed && robot.intake.arm.getTargetPosition() != Intake.backward && !robot.intake.manualOverrideIsOn) {
             robot.intake.closeClaw();
         }
 
