@@ -62,6 +62,9 @@ public class BlueFar extends BaseOpMode {
         forward = drive.trajectoryBuilder(startPose)
                 .splineToConstantHeading(new Vector2d(44,-14), 0,RRMecanum.getVelocityConstraint(20, DriveConstants.MAX_ANG_VEL, DriveConstants.TRACK_WIDTH),
                         RRMecanum.getAccelerationConstraint(DriveConstants.MAX_ACCEL))
+                .addDisplacementMarker( () -> {
+                    robot.intake.setAutoPos();
+                })
 
                 .build();
         leftForward = drive.trajectoryBuilder(startPose)
@@ -71,10 +74,16 @@ public class BlueFar extends BaseOpMode {
         extraForward = drive.trajectoryBuilder(startPose)
                 .splineTo(new Vector2d(47.5,-6), Math.toRadians(0),RRMecanum.getVelocityConstraint(20, DriveConstants.MAX_ANG_VEL, DriveConstants.TRACK_WIDTH),
                         RRMecanum.getAccelerationConstraint(DriveConstants.MAX_ACCEL))
+                .addDisplacementMarker( () -> {
+                    robot.intake.setAutoPos();
+                })
                 .build();
         leftInitial = drive.trajectoryBuilder(startPose)
                 .lineToConstantHeading(new Vector2d(30,-1), RRMecanum.getVelocityConstraint(20, DriveConstants.MAX_ANG_VEL, DriveConstants.TRACK_WIDTH),
                         RRMecanum.getAccelerationConstraint(DriveConstants.MAX_ACCEL))
+                .addDisplacementMarker( () -> {
+                    robot.intake.setAutoPos();
+                })
                 .build();
         strafeRight = drive.trajectoryBuilder(startPose)
                 .lineToConstantHeading(new Vector2d(1,-5), RRMecanum.getVelocityConstraint(20, DriveConstants.MAX_ANG_VEL, DriveConstants.TRACK_WIDTH),
@@ -121,6 +130,7 @@ public class BlueFar extends BaseOpMode {
         if(position == TeamPropDetection.PropPosition.LEFT) {
             drive.waitForIdle();
             drive.followTrajectoryAsync(leftInitial);
+            robot.intake.setAutoPos();
             drive.waitForIdle();
             drive.turnAsync(Math.toRadians(-84));
             drive.waitForIdle();
@@ -153,6 +163,7 @@ public class BlueFar extends BaseOpMode {
         if(position == TeamPropDetection.PropPosition.CENTER){
             drive.waitForIdle();
             drive.followTrajectoryAsync(extraForward);
+            robot.intake.setAutoPos();
             drive.waitForIdle();
             robot.intake.setAutoPos();
             robot.intake.toggleClaw();
@@ -176,6 +187,7 @@ public class BlueFar extends BaseOpMode {
         }
         if(position == TeamPropDetection.PropPosition.RIGHT){
             drive.followTrajectoryAsync(forward);
+            robot.intake.setAutoPos();
             drive.waitForIdle();
             robot.intake.setAutoPos();
             robot.intake.toggleClaw();

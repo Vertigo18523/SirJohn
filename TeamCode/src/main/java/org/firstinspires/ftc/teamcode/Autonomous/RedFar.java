@@ -94,6 +94,9 @@ public class RedFar extends BaseOpMode {
                         RRMecanum.getAccelerationConstraint(DriveConstants.MAX_ACCEL))
                 .splineToConstantHeading(new Vector2d(48,7.5),Math.toRadians(0) ,RRMecanum.getVelocityConstraint(20, DriveConstants.MAX_ANG_VEL, DriveConstants.TRACK_WIDTH),
                         RRMecanum.getAccelerationConstraint(DriveConstants.MAX_ACCEL))
+                .addDisplacementMarker( () -> {
+                    robot.intake.setAutoPos();
+                })
 
                 .build();
         centerToPurple = drive.trajectoryBuilder(startPose)
@@ -101,10 +104,16 @@ public class RedFar extends BaseOpMode {
                         RRMecanum.getAccelerationConstraint(DriveConstants.MAX_ACCEL))
                 .splineTo(new Vector2d(47,5), Math.toRadians(0),RRMecanum.getVelocityConstraint(20, DriveConstants.MAX_ANG_VEL, DriveConstants.TRACK_WIDTH),
                         RRMecanum.getAccelerationConstraint(DriveConstants.MAX_ACCEL))
+                .addDisplacementMarker( () -> {
+                    robot.intake.setAutoPos();
+                })
                 .build();
         rightInitial = drive.trajectoryBuilder(startPose)
                 .lineTo(new Vector2d(29.5,-3),RRMecanum.getVelocityConstraint(20, DriveConstants.MAX_ANG_VEL, DriveConstants.TRACK_WIDTH),
                         RRMecanum.getAccelerationConstraint(DriveConstants.MAX_ACCEL))
+                .addDisplacementMarker( () -> {
+                    robot.intake.setAutoPos();
+                })
                 .build();
         leftMiddle = drive.trajectoryBuilder(new Pose2d())
                 .splineTo(new Vector2d(7,-1), 0,  RRMecanum.getVelocityConstraint(20, DriveConstants.MAX_ANG_VEL, DriveConstants.TRACK_WIDTH), RRMecanum.getAccelerationConstraint(DriveConstants.MAX_ACCEL))
@@ -136,6 +145,7 @@ public class RedFar extends BaseOpMode {
 
         if(position == TeamPropDetection.PropPosition.LEFT) {
             drive.followTrajectoryAsync(forward);
+            robot.intake.setAutoPos();
             drive.waitForIdle();
 //            robot.outtake.toSpoon();
             drive.waitForIdle();
@@ -165,6 +175,7 @@ public class RedFar extends BaseOpMode {
         if(position == TeamPropDetection.PropPosition.CENTER){
             drive.waitForIdle();
             drive.followTrajectoryAsync(centerToPurple);
+            robot.intake.setAutoPos();
             drive.waitForIdle();
             drive.setPoseEstimate(new Pose2d());
             drive.waitForIdle();
@@ -192,6 +203,7 @@ public class RedFar extends BaseOpMode {
         if(position == TeamPropDetection.PropPosition.RIGHT){
             drive.waitForIdle();
             drive.followTrajectoryAsync(rightInitial);
+            robot.intake.setAutoPos();
             drive.waitForIdle();
             drive.turnAsync(Math.toRadians(70));
 //            robot.outtake.toSpoon();

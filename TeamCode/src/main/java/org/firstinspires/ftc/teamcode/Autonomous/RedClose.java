@@ -72,6 +72,9 @@ public class RedClose extends BaseOpMode {
         forward = drive.trajectoryBuilder(startPose)
                 .lineTo(new Vector2d(26,-3),RRMecanum.getVelocityConstraint(30, DriveConstants.MAX_ANG_VEL, DriveConstants.TRACK_WIDTH),
                         RRMecanum.getAccelerationConstraint(DriveConstants.MAX_ACCEL))
+                .addDisplacementMarker( () -> {
+                    robot.intake.setAutoPos();
+                })
 
                 .build();
         centerToPurple = drive.trajectoryBuilder(startPose)
@@ -79,10 +82,16 @@ public class RedClose extends BaseOpMode {
                         RRMecanum.getAccelerationConstraint(DriveConstants.MAX_ACCEL))
                 .splineTo(new Vector2d(35,-13), Math.toRadians(0),RRMecanum.getVelocityConstraint(30, DriveConstants.MAX_ANG_VEL, DriveConstants.TRACK_WIDTH),
                         RRMecanum.getAccelerationConstraint(DriveConstants.MAX_ACCEL))
+                .addDisplacementMarker( () -> {
+                    robot.intake.setAutoPos();
+                })
                 .build();
         rightInitial = drive.trajectoryBuilder(startPose)
                 .splineTo(new Vector2d(23,-26.5), Math.toRadians(0),RRMecanum.getVelocityConstraint(30, DriveConstants.MAX_ANG_VEL, DriveConstants.TRACK_WIDTH),
                         RRMecanum.getAccelerationConstraint(DriveConstants.MAX_ACCEL))
+                .addDisplacementMarker( () -> {
+                    robot.intake.setAutoPos();
+                })
                 .build();
         leftMiddle = drive.trajectoryBuilder(new Pose2d())
                 .splineTo(new Vector2d(22,5), 0,  RRMecanum.getVelocityConstraint(30, DriveConstants.MAX_ANG_VEL, DriveConstants.TRACK_WIDTH), RRMecanum.getAccelerationConstraint(DriveConstants.MAX_ACCEL))
@@ -107,7 +116,6 @@ public class RedClose extends BaseOpMode {
     @Override
     public void onStart() throws InterruptedException {
         position = robot.camera.getPosition();
-        robot.intake.setAutoPos();
         drive.waitForIdle();
 
         sleep(1000);
@@ -115,6 +123,7 @@ public class RedClose extends BaseOpMode {
 
         if(position == TeamPropDetection.PropPosition.LEFT) {
             drive.followTrajectoryAsync(forward);
+            robot.intake.setAutoPos();
             drive.waitForIdle();
             drive.turnAsync(Math.toRadians(-110));
 //            robot.outtake.toSpoon();
@@ -137,6 +146,7 @@ public class RedClose extends BaseOpMode {
         if(position == TeamPropDetection.PropPosition.CENTER){
             drive.waitForIdle();
             drive.followTrajectoryAsync(centerToPurple);
+            robot.intake.setAutoPos();
             drive.waitForIdle();
             drive.turnAsync(Math.toRadians(-120));
 //            robot.outtake.toSpoon();
@@ -156,6 +166,7 @@ public class RedClose extends BaseOpMode {
         if(position == TeamPropDetection.PropPosition.RIGHT){
             drive.waitForIdle();
             drive.followTrajectoryAsync(rightInitial);
+            robot.intake.setAutoPos();
             drive.waitForIdle();
             drive.turnAsync(Math.toRadians(-110));
 //            robot.outtake.toSpoon();
