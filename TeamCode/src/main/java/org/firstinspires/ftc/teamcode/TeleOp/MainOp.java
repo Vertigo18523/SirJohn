@@ -11,6 +11,7 @@ import org.firstinspires.ftc.teamcode.Base.BaseOpMode;
 import org.firstinspires.ftc.teamcode.Base.Robot;
 import org.firstinspires.ftc.teamcode.Bots.SirJohn;
 import org.firstinspires.ftc.teamcode.Components.Intake;
+import org.firstinspires.ftc.teamcode.RoadRunner.drive.DriveConstants;
 import org.firstinspires.ftc.teamcode.RoadRunner.drive.RRMecanum;
 
 import com.acmerobotics.roadrunner.trajectory.Trajectory;
@@ -86,11 +87,13 @@ public class MainOp extends BaseOpMode {
         robot.intake.openClaw();
 
         gamepadListener1.a.onRelease = () -> {
+            drive.setPoseEstimate(new Pose2d());
             drive.followTrajectoryAsync(
                 drive.trajectoryBuilder(new Pose2d())
-                    .back(0.1)
-                    .build()
+                        .back(1)
+                        .build()
             );
+            drive.setPoseEstimate(new Pose2d());
         };
 
     }
@@ -130,6 +133,10 @@ public class MainOp extends BaseOpMode {
         }
         if (gamepad2.guide) {
             robot.slides.init();
+        }
+        if(gamepad2.right_trigger > 0){
+            robot.intake.setArmPos(Intake.forward);
+            robot.intake.openClaw();
         }
 
         if (gamepad2.right_trigger > 0 || gamepad2.left_trigger > 0) {
