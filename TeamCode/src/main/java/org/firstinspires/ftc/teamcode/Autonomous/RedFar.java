@@ -35,6 +35,7 @@ public class RedFar extends BaseOpMode {
     public Trajectory middle;
     public Trajectory backDrive;
     public Trajectory leftForward;
+    public Trajectory rightForward;
     public Trajectory strafeRight;
     public Trajectory strafeRightMore;
     public Trajectory strafeRightEvenMore;
@@ -78,6 +79,10 @@ public class RedFar extends BaseOpMode {
                 .lineToConstantHeading(new Vector2d(80,2),RRMecanum.getVelocityConstraint(15, DriveConstants.MAX_ANG_VEL, DriveConstants.TRACK_WIDTH),
                         RRMecanum.getAccelerationConstraint(DriveConstants.MAX_ACCEL))
                 .build();
+        rightForward = drive.trajectoryBuilder(startPose)
+                .lineToConstantHeading(new Vector2d(85,2),RRMecanum.getVelocityConstraint(15, DriveConstants.MAX_ANG_VEL, DriveConstants.TRACK_WIDTH),
+                        RRMecanum.getAccelerationConstraint(DriveConstants.MAX_ACCEL))
+                .build();
 
         backDrive = drive.trajectoryBuilder(startPose)
                 .lineToConstantHeading(new Vector2d(-5,0),RRMecanum.getVelocityConstraint(15, DriveConstants.MAX_ANG_VEL, DriveConstants.TRACK_WIDTH),
@@ -109,7 +114,7 @@ public class RedFar extends BaseOpMode {
                 })
                 .build();
         rightInitial = drive.trajectoryBuilder(startPose)
-                .lineTo(new Vector2d(29.5,-3),RRMecanum.getVelocityConstraint(20, DriveConstants.MAX_ANG_VEL, DriveConstants.TRACK_WIDTH),
+                .lineTo(new Vector2d(30.5,-1),RRMecanum.getVelocityConstraint(20, DriveConstants.MAX_ANG_VEL, DriveConstants.TRACK_WIDTH),
                         RRMecanum.getAccelerationConstraint(DriveConstants.MAX_ACCEL))
                 .addDisplacementMarker( () -> {
                     robot.intake.setAutoPos();
@@ -217,7 +222,7 @@ public class RedFar extends BaseOpMode {
             drive.turnAsync(Math.toRadians(-190));
             drive.setPoseEstimate(new Pose2d());
             drive.waitForIdle();
-            drive.followTrajectoryAsync(leftForward);
+            drive.followTrajectoryAsync(rightForward);
             drive.setPoseEstimate(new Pose2d());
             drive.waitForIdle();
             drive.followTrajectoryAsync(strafeRightEvenMore);

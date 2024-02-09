@@ -73,7 +73,7 @@ public class BlueClose extends BaseOpMode {
                 })
                 .build();
         leftInitial = drive.trajectoryBuilder(startPose)
-                .lineToConstantHeading(new Vector2d(30,17.5), RRMecanum.getVelocityConstraint(30, DriveConstants.MAX_ANG_VEL, DriveConstants.TRACK_WIDTH),
+                .lineToConstantHeading(new Vector2d(30,19), RRMecanum.getVelocityConstraint(30, DriveConstants.MAX_ANG_VEL, DriveConstants.TRACK_WIDTH),
                         RRMecanum.getAccelerationConstraint(DriveConstants.MAX_ACCEL))
                 .addDisplacementMarker( () -> {
                     robot.intake.setAutoPos();
