@@ -235,7 +235,7 @@ public class BlueClose extends BaseOpMode {
                         updateTrajectory = drive.trajectoryBuilder(new Pose2d())
                                 .splineToConstantHeading(new Vector2d(detection.ftcPose.y-3.5, -detection.ftcPose.x-3.5), 0, RRMecanum.getVelocityConstraint(15, DriveConstants.MAX_ANG_VEL, DriveConstants.TRACK_WIDTH),
                                         RRMecanum.getAccelerationConstraint(DriveConstants.MAX_ACCEL))
-                                .addDisplacementMarker(17,() -> {
+                                .addDisplacementMarker(18,() -> {
                                     robot.slides.move(760,1);
                                     robot.intake.claw.close();
                                     robot.outtake.unFlip();

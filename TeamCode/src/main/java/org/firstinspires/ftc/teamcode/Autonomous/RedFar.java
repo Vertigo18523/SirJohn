@@ -66,7 +66,7 @@ public class RedFar extends BaseOpMode {
                         RRMecanum.getAccelerationConstraint(DriveConstants.MAX_ACCEL))
                 .build();
         strafeRightMore = drive.trajectoryBuilder(startPose)
-                .lineToConstantHeading(new Vector2d(-1,-28),RRMecanum.getVelocityConstraint(15, DriveConstants.MAX_ANG_VEL, DriveConstants.TRACK_WIDTH),
+                .lineToConstantHeading(new Vector2d(-1,-31),RRMecanum.getVelocityConstraint(15, DriveConstants.MAX_ANG_VEL, DriveConstants.TRACK_WIDTH),
                         RRMecanum.getAccelerationConstraint(DriveConstants.MAX_ACCEL))
                 .build();
 
@@ -105,16 +105,16 @@ public class RedFar extends BaseOpMode {
 
                 .build();
         centerToPurple = drive.trajectoryBuilder(startPose)
-                .splineTo(new Vector2d(40,5), Math.toRadians(0),RRMecanum.getVelocityConstraint(20, DriveConstants.MAX_ANG_VEL, DriveConstants.TRACK_WIDTH),
+                .splineTo(new Vector2d(40,3), Math.toRadians(0),RRMecanum.getVelocityConstraint(20, DriveConstants.MAX_ANG_VEL, DriveConstants.TRACK_WIDTH),
                         RRMecanum.getAccelerationConstraint(DriveConstants.MAX_ACCEL))
-                .splineTo(new Vector2d(47,5), Math.toRadians(0),RRMecanum.getVelocityConstraint(20, DriveConstants.MAX_ANG_VEL, DriveConstants.TRACK_WIDTH),
+                .splineTo(new Vector2d(47,3), Math.toRadians(0),RRMecanum.getVelocityConstraint(20, DriveConstants.MAX_ANG_VEL, DriveConstants.TRACK_WIDTH),
                         RRMecanum.getAccelerationConstraint(DriveConstants.MAX_ACCEL))
                 .addDisplacementMarker( () -> {
                     robot.intake.setAutoPos();
                 })
                 .build();
         rightInitial = drive.trajectoryBuilder(startPose)
-                .lineTo(new Vector2d(30.5,-1),RRMecanum.getVelocityConstraint(20, DriveConstants.MAX_ANG_VEL, DriveConstants.TRACK_WIDTH),
+                .lineTo(new Vector2d(30.5,-3),RRMecanum.getVelocityConstraint(20, DriveConstants.MAX_ANG_VEL, DriveConstants.TRACK_WIDTH),
                         RRMecanum.getAccelerationConstraint(DriveConstants.MAX_ACCEL))
                 .addDisplacementMarker( () -> {
                     robot.intake.setAutoPos();
@@ -124,7 +124,7 @@ public class RedFar extends BaseOpMode {
                 .splineTo(new Vector2d(7,-1), 0,  RRMecanum.getVelocityConstraint(20, DriveConstants.MAX_ANG_VEL, DriveConstants.TRACK_WIDTH), RRMecanum.getAccelerationConstraint(DriveConstants.MAX_ACCEL))
                 .build();
         centerMiddle = drive.trajectoryBuilder(new Pose2d())
-                .lineTo(new Vector2d(5,5), RRMecanum.getVelocityConstraint(20, DriveConstants.MAX_ANG_VEL, DriveConstants.TRACK_WIDTH), RRMecanum.getAccelerationConstraint(DriveConstants.MAX_ACCEL))
+                .lineTo(new Vector2d(7,5), RRMecanum.getVelocityConstraint(20, DriveConstants.MAX_ANG_VEL, DriveConstants.TRACK_WIDTH), RRMecanum.getAccelerationConstraint(DriveConstants.MAX_ACCEL))
                 .build();
         rightMiddle = drive.trajectoryBuilder(new Pose2d())
                 .lineTo(new Vector2d(20,-22),RRMecanum.getVelocityConstraint(20, DriveConstants.MAX_ANG_VEL, DriveConstants.TRACK_WIDTH), RRMecanum.getAccelerationConstraint(DriveConstants.MAX_ACCEL))
@@ -192,7 +192,7 @@ public class RedFar extends BaseOpMode {
             drive.turnAsync(Math.toRadians(-118));
             drive.setPoseEstimate(new Pose2d());
             drive.waitForIdle();
-            drive.followTrajectoryAsync(leftForward);
+            drive.followTrajectoryAsync(rightForward);
 //            robot.outtake.toSpoon();
             drive.setPoseEstimate(new Pose2d());
             drive.waitForIdle();
@@ -219,7 +219,7 @@ public class RedFar extends BaseOpMode {
             drive.followTrajectoryAsync(rightMiddle);
             drive.setPoseEstimate(new Pose2d());
             drive.waitForIdle();
-            drive.turnAsync(Math.toRadians(-190));
+            drive.turnAsync(Math.toRadians(-193));
             drive.setPoseEstimate(new Pose2d());
             drive.waitForIdle();
             drive.followTrajectoryAsync(rightForward);
@@ -257,7 +257,7 @@ public class RedFar extends BaseOpMode {
                         updateTrajectory = drive.trajectoryBuilder(new Pose2d())
                                 .splineToConstantHeading(new Vector2d(detection.ftcPose.y-2.5, -detection.ftcPose.x), 0,  RRMecanum.getVelocityConstraint(15, DriveConstants.MAX_ANG_VEL, DriveConstants.TRACK_WIDTH),
                                         RRMecanum.getAccelerationConstraint(DriveConstants.MAX_ACCEL))
-                                .addDisplacementMarker(15, () -> {
+                                .addDisplacementMarker(16, () -> {
                                     robot.slides.move(760,1);
                                     robot.intake.claw.close();
                                     robot.outtake.unFlip();
@@ -282,9 +282,9 @@ public class RedFar extends BaseOpMode {
                     else if (detection.id == 5 && position == TeamPropDetection.PropPosition.CENTER) {
                         drive.setPoseEstimate(new Pose2d());
                         updateTrajectory = drive.trajectoryBuilder(new Pose2d())
-                                .splineToConstantHeading(new Vector2d(detection.ftcPose.y-3.3, -detection.ftcPose.x),0, RRMecanum.getVelocityConstraint(15, DriveConstants.MAX_ANG_VEL, DriveConstants.TRACK_WIDTH),
+                                .splineToConstantHeading(new Vector2d(detection.ftcPose.y-3, -detection.ftcPose.x),0, RRMecanum.getVelocityConstraint(15, DriveConstants.MAX_ANG_VEL, DriveConstants.TRACK_WIDTH),
                                         RRMecanum.getAccelerationConstraint(DriveConstants.MAX_ACCEL))
-                                .addDisplacementMarker(15, () -> {
+                                .addDisplacementMarker(16, () -> {
                                     robot.slides.move(760,1);
                                     robot.intake.claw.close();
                                     robot.outtake.unFlip();

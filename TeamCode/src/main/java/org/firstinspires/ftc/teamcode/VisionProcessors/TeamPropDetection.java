@@ -42,8 +42,8 @@ public class TeamPropDetection implements VisionProcessor {
             rightBlurredMat = new Mat();
 
     private static Scalar
-            lowerRedBounds = new Scalar(125, 0, 0, 255),
-            upperRedBounds = new Scalar(255, 175, 175, 255),
+            lowerRedBounds = new Scalar(80, 0, 0, 255),
+            upperRedBounds = new Scalar(255, 125, 125, 255),
             lowerBlueBounds = new Scalar(0, 30, 100, 255),
             upperBlueBounds = new Scalar(60, 95, 255, 255);
 

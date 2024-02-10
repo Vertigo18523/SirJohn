@@ -114,7 +114,7 @@ public class BlueFar extends BaseOpMode {
                 .build();
 
         strafeLeft = drive.trajectoryBuilder(startPose)
-                .lineToConstantHeading(new Vector2d(2,35),RRMecanum.getVelocityConstraint(35, DriveConstants.MAX_ANG_VEL, DriveConstants.TRACK_WIDTH),
+                .lineToConstantHeading(new Vector2d(2,30),RRMecanum.getVelocityConstraint(35, DriveConstants.MAX_ANG_VEL, DriveConstants.TRACK_WIDTH),
                         RRMecanum.getAccelerationConstraint(DriveConstants.MAX_ACCEL))
                 .build();
 
@@ -176,7 +176,7 @@ public class BlueFar extends BaseOpMode {
             drive.waitForIdle();
             drive.setPoseEstimate(new Pose2d());
             drive.followTrajectory(centerMiddle);
-            drive.turnAsync(Math.toRadians(71));
+            drive.turnAsync(Math.toRadians(74));
             drive.waitForIdle();
             drive.setPoseEstimate(new Pose2d());
             drive.waitForIdle();
@@ -263,7 +263,7 @@ public class BlueFar extends BaseOpMode {
                         updateTrajectory = drive.trajectoryBuilder(new Pose2d())
                                 .splineToConstantHeading(new Vector2d(detection.ftcPose.y-3, -detection.ftcPose.x-2),0, RRMecanum.getVelocityConstraint(15, DriveConstants.MAX_ANG_VEL, DriveConstants.TRACK_WIDTH),
                                         RRMecanum.getAccelerationConstraint(DriveConstants.MAX_ACCEL))
-                                .addDisplacementMarker(16,() -> {
+                                .addDisplacementMarker(15,() -> {
                                     robot.slides.move(760,1);
                                     robot.intake.claw.close();
                                     robot.outtake.unFlip();
