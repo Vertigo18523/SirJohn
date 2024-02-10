@@ -78,9 +78,9 @@ public class RedClose extends BaseOpMode {
 
                 .build();
         centerToPurple = drive.trajectoryBuilder(startPose)
-                .splineTo(new Vector2d(30,-13), Math.toRadians(0),RRMecanum.getVelocityConstraint(30, DriveConstants.MAX_ANG_VEL, DriveConstants.TRACK_WIDTH),
+                .splineTo(new Vector2d(30,-13), Math.toRadians(0),RRMecanum.getVelocityConstraint(20, DriveConstants.MAX_ANG_VEL, DriveConstants.TRACK_WIDTH),
                         RRMecanum.getAccelerationConstraint(DriveConstants.MAX_ACCEL))
-                .splineTo(new Vector2d(35,-13), Math.toRadians(0),RRMecanum.getVelocityConstraint(30, DriveConstants.MAX_ANG_VEL, DriveConstants.TRACK_WIDTH),
+                .splineTo(new Vector2d(36.5,-13), Math.toRadians(0),RRMecanum.getVelocityConstraint(20, DriveConstants.MAX_ANG_VEL, DriveConstants.TRACK_WIDTH),
                         RRMecanum.getAccelerationConstraint(DriveConstants.MAX_ACCEL))
                 .addDisplacementMarker( () -> {
                     robot.intake.setAutoPos();
@@ -148,7 +148,7 @@ public class RedClose extends BaseOpMode {
             drive.followTrajectoryAsync(centerToPurple);
             robot.intake.setAutoPos();
             drive.waitForIdle();
-            drive.turnAsync(Math.toRadians(-120));
+            drive.turnAsync(Math.toRadians(-110));
 //            robot.outtake.toSpoon();
             drive.waitForIdle();
             robot.intake.toggleClaw();
@@ -257,7 +257,7 @@ public class RedClose extends BaseOpMode {
                         updateTrajectory = drive.trajectoryBuilder(new Pose2d())
                                 .splineToConstantHeading(new Vector2d(detection.ftcPose.y-3, -detection.ftcPose.x-2), 0, RRMecanum.getVelocityConstraint(15, DriveConstants.MAX_ANG_VEL, DriveConstants.TRACK_WIDTH),
                                         RRMecanum.getAccelerationConstraint(DriveConstants.MAX_ACCEL))
-                                .addDisplacementMarker(17, () -> {
+                                .addDisplacementMarker(16, () -> {
                                     robot.slides.move(760,1);
                                     robot.intake.claw.close();
                                     robot.outtake.unFlip();
